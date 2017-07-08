@@ -1,3 +1,5 @@
+![Build Status](https://ci.appveyor.com/api/projects/status/github/ScientificDataFormat/NDTable?branch=master&svg=true)
+
 # NDTable
 
 NDTable is a C library to inter- and extrapolate multi-dimensional data.
