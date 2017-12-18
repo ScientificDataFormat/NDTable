@@ -66,7 +66,7 @@ void NDTable_find_index(double value, int nvalues, const double *values, int *in
 		return;
 	}
 
-	// estimate the index and make sure that i >= 0 and i <= 2nd last 
+	// estimate the index and make sure that i >= 0 and i <= 2nd last
 	i = MAX(0, MIN((int)(nvalues * (value - min) / range), nvalues - 2));
 
 	// go up until value < values[i+1]
@@ -100,7 +100,7 @@ int NDTable_evaluate(NDTable_h table, int nparams, const double params[], NDTabl
 
 	// find entry point and weights
 	for (i = 0; i < table->ndims; i++) {
-		NDTable_find_index(params[i], table->dims[i], table->scales[i], &subs[i], &t[i], extrap_method);
+		NDTable_find_index(params[i], table->dims[i], table->scales[i], &subs[i], &t[i]);
 	}
 
 	return NDTable_evaluate_internal(table, t, subs, nsubs, 0, interp_method, extrap_method, value, derivatives);
@@ -123,7 +123,7 @@ int NDTable_evaluate_derivative(NDTable_h table, int nparams, const double param
 
 	// find entry point and weights
 	for (i = 0; i < table->ndims; i++) {
-		NDTable_find_index(params[i], table->dims[i], table->scales[i], &subs[i], &t[i], extrap_method);
+		NDTable_find_index(params[i], table->dims[i], table->scales[i], &subs[i], &t[i]);
 	}
 
 	if ((err = NDTable_evaluate_internal(table, t, subs, nsubs, 0, interp_method, extrap_method, value, derivatives)) != 0) {
