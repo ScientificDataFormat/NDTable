@@ -2,6 +2,7 @@
 
 #define _USE_MATH_DEFINES  // for M_PI
 #include <math.h>
+#include <cmath>
 
 #include "NDTable.h"
 
@@ -79,16 +80,16 @@ TEST_CASE("Interplation") {
 			y[1] = 3;
 			t[0] = 0.0;
 			REQUIRE(0 == NDTable_evaluate_internal(&ds, t, subs, nsubs, 0, NDTABLE_INTERP_NEAREST, NDTABLE_EXTRAP_LINEAR, &value, derivatives));
-			REQUIRE(1 == _isnan(value));
-			REQUIRE(1 == _isnan(derivatives[0]));
+			REQUIRE(1 == std::isnan(value));
+			REQUIRE(1 == std::isnan(derivatives[0]));
 		
 			// right boundary
 			y[0] = 3;
 			y[1] = non_finite[i]; 
 			t[0] = 1.0;
 			REQUIRE(0 == NDTable_evaluate_internal(&ds, t, subs, nsubs, 0, NDTABLE_INTERP_NEAREST, NDTABLE_EXTRAP_LINEAR, &value, derivatives));
-			REQUIRE(1 == _isnan(value));
-			REQUIRE(1 == _isnan(derivatives[0]));
+			REQUIRE(1 == std::isnan(value));
+			REQUIRE(1 == std::isnan(derivatives[0]));
 		}
 	}
 
@@ -121,15 +122,15 @@ TEST_CASE("Interplation") {
 			y[0] = non_finite[i];
 			y[1] = 2;
 			REQUIRE(0 == NDTable_evaluate_internal(&ds, t, subs, nsubs, 0, NDTABLE_INTERP_LINEAR, NDTABLE_EXTRAP_NONE, &value, derivatives));
-			REQUIRE(1 == _isnan(value));
-			REQUIRE(1 == _isnan(derivatives[0]));
+			REQUIRE(1 == std::isnan(value));
+			REQUIRE(1 == std::isnan(derivatives[0]));
 		
 			// right value non-finite
 			y[0] = non_finite[i];
 			y[1] = 3;
 			REQUIRE(0 == NDTable_evaluate_internal(&ds, t, subs, nsubs, 0, NDTABLE_INTERP_LINEAR, NDTABLE_EXTRAP_NONE, &value, derivatives));
-			REQUIRE(1 == _isnan(value));
-			REQUIRE(1 == _isnan(derivatives[0]));
+			REQUIRE(1 == std::isnan(value));
+			REQUIRE(1 == std::isnan(derivatives[0]));
 		}
 	}
 
@@ -173,11 +174,11 @@ TEST_CASE("Interplation") {
 				}
 				y[j] = non_finite[i];
 				REQUIRE(0 == NDTable_evaluate_internal(&ds, t, subs, nsubs, 0, NDTABLE_INTERP_AKIMA, NDTABLE_EXTRAP_NONE, &value, derivatives));
-				if (!_isnan(value)) {
+				if (!std::isnan(value)) {
 					i = i;
 				}
-				REQUIRE(1 == _isnan(value));
-				REQUIRE(1 == _isnan(derivatives[0]));
+				REQUIRE(1 == std::isnan(value));
+				REQUIRE(1 == std::isnan(derivatives[0]));
 			}
 		}
 
@@ -223,14 +224,14 @@ TEST_CASE("Interplation") {
 			// left
 			t[0] = -0.1;
 			REQUIRE(0 == NDTable_evaluate_internal(&ds, t, subs, nsubs, 0, NDTABLE_INTERP_NEAREST, NDTABLE_EXTRAP_HOLD, &value, derivatives));
-			REQUIRE(1 == _isnan(value));
-			REQUIRE(1 == _isnan(derivatives[0]));
+			REQUIRE(1 == std::isnan(value));
+			REQUIRE(1 == std::isnan(derivatives[0]));
 		
 			// right
 			t[0] = 1.1;
 			REQUIRE(0 == NDTable_evaluate_internal(&ds, t, subs, nsubs, 0, NDTABLE_INTERP_NEAREST, NDTABLE_EXTRAP_HOLD, &value, derivatives));
-			REQUIRE(1 == _isnan(value));
-			REQUIRE(1 == _isnan(derivatives[0]));
+			REQUIRE(1 == std::isnan(value));
+			REQUIRE(1 == std::isnan(derivatives[0]));
 		}
 	}
 
@@ -273,8 +274,8 @@ TEST_CASE("Interplation") {
 				y[0] = 2; y[1] = 3;
 				y[j] = non_finite[i];
 				REQUIRE(0 == NDTable_evaluate_internal(&ds, t, subs, nsubs, 0, NDTABLE_INTERP_NEAREST, NDTABLE_EXTRAP_LINEAR, &value, derivatives));
-				REQUIRE(1 == _isnan(value));
-				REQUIRE(1 == _isnan(derivatives[0]));
+				REQUIRE(1 == std::isnan(value));
+				REQUIRE(1 == std::isnan(derivatives[0]));
 			}
 		}
 	}
