@@ -94,7 +94,7 @@ NDTable_h NDTable_alloc_table();
 
 /*! De-allocates a table
  *
- *	@param [in]	table   pointer to the table to de-allocate
+ *	@param [in]	pointer to the table to de-allocate
  */
 void NDTable_free_table(NDTable_h table);
 
@@ -124,6 +124,7 @@ double NDTable_get_value_subs(const NDTable_h table, const int subs[]);
  *	@param [out]	index		the smallest index in [0;num_values-2] for which values[index] <= value
  *	@param [out]	t			the weight for the linear interpolation s.t. value == (1-t)*values[index] + t*values[index+1] 
  * 
+ *	@return 0
  */
 void NDTable_find_index(double value, int num_values, const double values[], int *index, double *t, NDTable_ExtrapMethod_t extrap_method);
 

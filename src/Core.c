@@ -16,6 +16,17 @@
 static char error_message[MAX_MESSAGE_LENGTH] = "";
 
 
+/* A string comparison that returns 1 if a is NULL, empty ("") or equal b and 0 otherwise */
+static int streq(const char *a, const char *b) {
+	if(a == NULL || strlen(a) == 0)
+		return 1;
+
+	if(b == NULL || strlen(b) == 0)
+		return 0;
+
+	return strcmp(a, b) == 0;
+}
+
 void NDTable_set_error_message(const char *msg, ...) {
 	va_list vargs;
 	va_start(vargs, msg);

@@ -31,7 +31,7 @@ Prototype of an interpolation function
 @param  table			[in]		table handle
 @param  t				[in]		weights for the interpolation (normalized)
 @param  subs			[in]		subscripts of the left sample point
-@param  nsubs			[in,out]	subscripts of the right (next) sample point
+@param  subs			[in,out]	subscripts of the right (next) sample point
 @param  dim				[in]		index of the current dimension
 @param  interp_method	[in]		index of the current dimension
 @param  extrap_method	[in]		index of the current dimension
@@ -277,7 +277,7 @@ static int interp_akima(const NDTable_h table, const double *t, const int *subs,
     double c2   = 0;
 	double dx   = 0;
 	double a    = 0;
-	// double v    = 0;
+	double v    = 0;
 
 	int n = table->dims[dim]; // extent of the current dimension
 	int sub = subs[dim];      // subscript of current dimension
@@ -367,6 +367,7 @@ static int interp_fritsch_butland(const NDTable_h table, const double *t, const 
 	double d [3] = { 0, 0, 0 };    // divided differences 
     double c [4] = { 0, 0, 0, 0 }; // spline coefficients
     double c2    = 0;
+	double v     = 0;
 
 	int n = table->dims[dim]; // extent of the current dimension
 	int sub = subs[dim];      // subscript of current dimension
@@ -441,6 +442,7 @@ static int interp_steffen(const NDTable_h table, const double *t, const int *sub
 	double d [3] = { 0, 0, 0 };    // divided differences 
     double c [4] = { 0, 0, 0, 0 }; // spline coefficients
     double c2    = 0;
+	double v     = 0;
 
 	const int n   = table->dims[dim]; // extent of the current dimension
 	const int sub = subs[dim];      // subscript of current dimension
