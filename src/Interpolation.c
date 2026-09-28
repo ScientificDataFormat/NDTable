@@ -277,7 +277,6 @@ static int interp_akima(const NDTable_h table, const double *t, const int *subs,
     double c2   = 0;
 	double dx   = 0;
 	double a    = 0;
-	double v    = 0;
 
 	int n = table->dims[dim]; // extent of the current dimension
 	int sub = subs[dim];      // subscript of current dimension
@@ -367,7 +366,6 @@ static int interp_fritsch_butland(const NDTable_h table, const double *t, const 
 	double d [3] = { 0, 0, 0 };    // divided differences 
     double c [4] = { 0, 0, 0, 0 }; // spline coefficients
     double c2    = 0;
-	double v     = 0;
 
 	int n = table->dims[dim]; // extent of the current dimension
 	int sub = subs[dim];      // subscript of current dimension
@@ -442,7 +440,6 @@ static int interp_steffen(const NDTable_h table, const double *t, const int *sub
 	double d [3] = { 0, 0, 0 };    // divided differences 
     double c [4] = { 0, 0, 0, 0 }; // spline coefficients
     double c2    = 0;
-	double v     = 0;
 
 	const int n   = table->dims[dim]; // extent of the current dimension
 	const int sub = subs[dim];      // subscript of current dimension
