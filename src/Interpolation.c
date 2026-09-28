@@ -31,7 +31,7 @@ Prototype of an interpolation function
 @param  table			[in]		table handle
 @param  t				[in]		weights for the interpolation (normalized)
 @param  subs			[in]		subscripts of the left sample point
-@param  subs			[in,out]	subscripts of the right (next) sample point
+@param  nsubs   		[in,out]	subscripts of the right (next) sample point
 @param  dim				[in]		index of the current dimension
 @param  interp_method	[in]		index of the current dimension
 @param  extrap_method	[in]		index of the current dimension
