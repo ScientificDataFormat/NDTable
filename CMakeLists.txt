@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.12)
+cmake_minimum_required(VERSION 3.16)
 
 project(NDTable LANGUAGES C CXX)
 
@@ -25,16 +25,15 @@ target_include_directories(NDTable
 include(CTest)
 
 if(BUILD_TESTING)
+    add_subdirectory(external/Catch2)
+
     add_executable(NDTable_test
         test/CoreTests.cpp
         test/InterpolationTests.cpp
     )
 
-    target_include_directories(NDTable_test PRIVATE
-        ${CMAKE_CURRENT_SOURCE_DIR}/test
-    )
-    target_compile_features(NDTable_test PRIVATE cxx_std_11)
-    target_link_libraries(NDTable_test PRIVATE NDTable)
+    target_compile_features(NDTable_test PRIVATE cxx_std_14)
+    target_link_libraries(NDTable_test PRIVATE NDTable Catch2::Catch2WithMain)
     enable_project_warnings(NDTable_test)
 
     add_test(NAME NDTable_test COMMAND NDTable_test)

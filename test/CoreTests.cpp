@@ -1,6 +1,5 @@
-#define CATCH_CONFIG_MAIN
-
-#include "catch.hpp"
+#include <catch2/catch_test_macros.hpp>
+#include <catch2/matchers/catch_matchers_string.hpp>
 
 #include "NDTable.h"
 
@@ -10,7 +9,7 @@ TEST_CASE("Core") {
 	SECTION("Set error message") {
 		NDTable_set_error_message("%d plus %.1f equals %s", 1, 1.5, "two point five");
 		auto message = NDTable_get_error_message();
-		REQUIRE_THAT(message, Catch::Equals("1 plus 1.5 equals two point five"));
+		REQUIRE_THAT(message, Catch::Matchers::Equals("1 plus 1.5 equals two point five"));
 	}
 
 	SECTION("Convert index to subscripts with legal index") {
